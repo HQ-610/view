@@ -11,9 +11,22 @@
         </div>
         <div class="wenan">导入文件</div>
         <input id="fileInput" type="file" name="file" accept="text/csv">
-        
     </div>
-    <script src="../js/importFile.js"></script>    
+    <div class="file-dialog">
+        <p>请输入要分析的文件分类：</p>
+        <select>
+            <option value="情绪类">情绪类</option>
+            <option value="癫痫类">癫痫类</option>
+        </select>
+        <div id="typeBtn" class="type-btn">
+            <button>确认</button>
+            <button>取消</button>
+        </div>
+    </div>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/axios/dist/axios.js"></script>
+    <script src="../js/request.js"></script>
+    <script src="../js/importFile.js"></script>     
 </body>
 
 </html>

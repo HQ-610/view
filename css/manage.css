@@ -1,0 +1,19 @@
+table {
+    text-align: center;
+}
+
+.td1 {
+    width: 100px;
+}
+
+.td2 {
+    word-break: break-all;
+}
+
+.td3 {
+    width: 50px;
+}
+
+.td4  {
+    width: 100px;
+}
