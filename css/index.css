@@ -1,0 +1,61 @@
+@import "./barCharts.css";
+@import "./brokenLine.css";
+
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
+}
+
+#container {
+    width: 100%;
+    background: #fff;
+}
+
+#graph, #optional{
+    float:left;
+}
+
+#graph{
+    width: 1000;
+}
+
+#optional{
+    padding: 20px;
+    margin-left: 20px;
+}
+
+#optional button{
+    margin: 10px;
+}
+
+#fftDomain{
+    clear: both;
+    margin-top: 20px;
+}
+
+.dialog {
+    width: 200px;
+    height: 150px;
+    background: #ccc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.select {
+    margin: 12px 0;
+}
+
+.btn {
+    margin-top: 20px;
+    width: 95%;
+    text-align: right;
+}
