@@ -216,7 +216,7 @@
         g3.append("g")
             .attr("class", "axis axis--y")
             .attr("transform", "translate(0," + 2 * y(0) + ")")
-            .call(d3.axisLeft(y));
+            // .call(d3.axisLeft(y));
 
         var transition3 = g3.append("g")
             .attr("transform", "translate(0," + 2 * y(0) + ")")

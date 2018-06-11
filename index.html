@@ -11,18 +11,36 @@
         </div>
         <div id="bottom">
             <div id="left">
-                <button>导入数据</button>
-                <button>时域波形图</button>
-                <button>频谱图</button>
-                <button>数据分析与标注</button>
-                <button>标签管理</button>
+                <button id="importFile">导入数据</button>
+                <button id="timeView">时域波形图</button>
+                <button id="fftView">频谱图</button>
+                <button id="dataAna">数据分析与标注</button>
+                <button id="manage">标签管理</button>
             </div>
             <div id="right">
-                <iframe width="100%" height="100%" style="border:0;" src="./component/importFile.html" frameborder="0">
+                <iframe id="content" width="100%" height="100%" style="border:0;" src="./component/importFile.html" frameborder="0">
                 </iframe>
             </div>
         </div>
     </div>
+    <script>
+        var content = document.getElementById("content");
+        document.getElementById("importFile").addEventListener("click", function(){
+            content.src = "./component/importFile.html";
+        });
+        document.getElementById("timeView").addEventListener("click", function(){
+            content.src = "./component/timeView.html";
+        });
+        document.getElementById("fftView").addEventListener("click", function(){
+            content.src = "./component/fftView.html";
+        });
+        document.getElementById("dataAna").addEventListener("click", function(){
+            content.src = "./component/dataAna.html";
+        });
+        document.getElementById("manage").addEventListener("click", function(){
+            content.src = "./component/manage.html";
+        });
+    </script>
 </body>
 
 </html>

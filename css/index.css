@@ -1,6 +1,14 @@
+/* @import "./barCharts.css"; */
+@import "./brokenLine.css";
+
 *{
     margin: 0;
     padding: 0;
+}
+.line {
+    fill: none;
+    stroke: steelblue;
+    stroke-width: 2px;
 }
 #container{
     width:970px;
@@ -28,5 +36,5 @@
     width:78%;
     margin-left:2%;
     height: 100%;
-    background: green;
+    /* background:; */
 }
