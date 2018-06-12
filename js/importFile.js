@@ -6,7 +6,6 @@
     })
     fileInput.addEventListener("click", function () {
         fileInput.onchange = function () {
-            console.log(this.files[0]);
             var reader = new FileReader();
             reader.readAsText(this.files[0]);
             reader.onload = function (e) {

@@ -18,7 +18,7 @@
                 <button id="manage">标签管理</button>
             </div>
             <div id="right">
-                <iframe id="content" width="100%" height="100%" style="border:0;" src="./component/importFile.html" frameborder="0">
+                <iframe id="content" width="100%" height="100%" name="" style="border:0;" src="./component/importFile.html" frameborder="0">
                 </iframe>
             </div>
         </div>
@@ -27,18 +27,23 @@
         var content = document.getElementById("content");
         document.getElementById("importFile").addEventListener("click", function(){
             content.src = "./component/importFile.html";
+            content.name = "importFile"
         });
         document.getElementById("timeView").addEventListener("click", function(){
             content.src = "./component/timeView.html";
+            content.name = "timeView"
         });
         document.getElementById("fftView").addEventListener("click", function(){
             content.src = "./component/fftView.html";
+            content.name = "fftView"
         });
         document.getElementById("dataAna").addEventListener("click", function(){
-            content.src = "./component/dataAna.html";
+            content.src = "./component/timeView.html";
+            content.name = "dataAna"
         });
         document.getElementById("manage").addEventListener("click", function(){
             content.src = "./component/manage.html";
+            content.name = "manage"
         });
     </script>
 </body>
