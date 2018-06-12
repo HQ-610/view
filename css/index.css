@@ -16,20 +16,32 @@
 }
 #top{
     width: 100%;
-    height:100px;
-    background: yellow;
+    height: 100px;
+    background-image: url(../image/header.jpg);
+    background-size: 970px 220px;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
 }
+
+#top img {
+    width: 500px;
+    height: 100px;
+    position: absolute;
+    right: 0;
+}
+
 #left{
     width: 20%;
     height: 100%;
     float: left;
-    background: red
+    border: 1px solid #D35400;
 }
 #left button{
     display: block;
     width:80%;
     height:30px;
-    margin:5px auto;
+    margin: 10px auto;
 }
 #right{
     float: left;

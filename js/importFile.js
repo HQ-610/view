@@ -42,14 +42,14 @@
                                     data: []
                                 }
                             }
-                            getData('/select')
+                            getData('/db/select')
                             .then(function(res) {
                                 if(res) {
                                     var result = res.filter(function(item) {
                                         return item.label.name === value
                                     });
                                     if(!result.length) {
-                                        postData('/add', {
+                                        postData('/db/add', {
                                             params
                                         })
                                         .then(function(res) {

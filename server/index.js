@@ -2,7 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var emotion = require('./emotion');
+var dbo = require('./dbo');
 var fileOperate = require('./fileOperate');
 
 app.all('*', function(req, res, next) {
@@ -13,7 +13,7 @@ app.all('*', function(req, res, next) {
 
 app.use(express.json({limit: '1024mb'}));
 app.use(bodyParser.json());
-app.use('/', emotion);
+app.use('/db', dbo);
 app.use('/file', fileOperate);
 
 app.listen(8800, function() {

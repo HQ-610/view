@@ -1,13 +1,13 @@
 <html>
 
 <head>
-    <script src="./js/jquery.js"></script>
+    <link rel="stylesheet" href="./css/index.css">
 </head>
 
 <body>
     <div id="container">
         <div id="top">
-            <link rel="stylesheet" href="./css/index.css">
+            <img src="./image/headerText.png" />
         </div>
         <div id="bottom">
             <div id="left">
@@ -16,6 +16,7 @@
                 <button id="fftView">频谱图</button>
                 <button id="dataAna">数据分析与标注</button>
                 <button id="manage">标签管理</button>
+                <button id="exit">退出系统</button>
             </div>
             <div id="right">
                 <iframe id="content" width="100%" height="100%" name="" style="border:0;" src="./component/importFile.html" frameborder="0">
@@ -23,6 +24,9 @@
             </div>
         </div>
     </div>
+    <script src="./js/jquery.js"></script>
+    <script src="./node_modules/axios/dist/axios.js"></script>
+    <script src="./js/request.js"></script>
     <script>
         var content = document.getElementById("content");
         document.getElementById("importFile").addEventListener("click", function(){
@@ -44,6 +48,15 @@
         document.getElementById("manage").addEventListener("click", function(){
             content.src = "./component/manage.html";
             content.name = "manage"
+        });
+        var exit = document.getElementById('exit');
+        exit.addEventListener('click', function() {
+            postData('/file/clear')
+            .then(function(res) {
+                if(res) {
+                    alert('您的数据已清空，请放心退出');
+                }
+            });
         });
     </script>
 </body>

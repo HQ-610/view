@@ -30,3 +30,23 @@ button:hover {
     fill: none;
     pointer-events: all
 }
+
+.signal {
+    width: 200px;
+    height: 180px;
+    background: #ccc;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 100;
+    border-radius: 10px;
+}
+
+.signal-btn {
+    margin-top: 10px;
+    width: 95%;
+    text-align: right;
+}

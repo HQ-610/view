@@ -669,23 +669,21 @@
                     })
 
                     //数据标注
-                    var mark = document.getElementById("mark");
-                    mark.addEventListener("click", function () {
-                        var body = $("body");
-                        body.append('<div class="dialog" id="dialog"><p>请选择要分析的通道:</p><select id="select" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><p>分析后的特征值:</p><input type="text" style="width: 100%;" id="addText" /><div class="btn"><input type="button" id="confirm" value="确定" /><input type="button" id="cancel" value="取消" /></div></div>');
+                    var mark = document.getElementById('mark');
+                    mark.addEventListener('click', function () {
+                        var body = $('body');
+                        body.append('<div class="signal" id="dialog"><p>请选择要分析的通道:</p><select id="tabSelect1"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><p>分析后的特征值:</p><select id="tabSelect2"><option value="0">开心</option><option value="1">不开心</option></select><div class="signal-btn"><input type="button" id="confirm" value="确定" /><input type="button" id="cancel" value="取消" /></div></div>');
                         $('#confirm').click(function () {
-                            var option = $("#select option:selected").val(),
-                                text = $("#addText").val();
-                            $.ajax({
-                                type: 'post',
-                                url: 'http://127.0.0.1:8800/save',
-                                contentType: 'application/json',
-                                dataType: 'json',
-                                data: JSON.stringify({
-                                    dataSource: text + ',' + areaData[option]
-                                }),
-                                success: function (res) {
-                                    console.log(res)
+                            var option1 = $("#tabSelect1 option:selected").val(),
+                                option2 = $("#tabSelect2 option:selected").val();
+                            postData('/db/addTab', {
+                                name: '情绪类',
+                                areaData: areaData[option1],
+                                case: option2
+                            })
+                            .then(function(res) {
+                                if(res) {
+                                    alert('标注成功');
                                 }
                             });
                             $('#dialog').hide();
