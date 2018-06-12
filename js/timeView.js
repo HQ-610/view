@@ -524,7 +524,7 @@
         })
         if (parent.document.getElementById("content").name == "dataAna") {
             var optional = $("#optional");
-            optional.append('<button id="area">选择区域</button><br />')
+            optional.append('<br /><br /><button id="area">选择区域</button><br /><br />')
 
             //圈选指标
             var area = document.getElementById("area");
@@ -596,9 +596,141 @@
                         areaData.Ch_4.push(data[i].Ch_4);
                     }
 
-                    console.log(areaData);
+                    //缩放
+                    var scale = document.getElementById("scale");
+                    //根据index拿到数据，利用D3 API进行缩放
+                    scale.addEventListener("click", function () {
+                        //实现缩放
+                        var body = $("body");
+                        body.append('<div class="dialog" id="dialogScale"><p>请选择要分析的通道:</p><select id="selectScale" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><div class="btn"><input type="button" id="confirmScale" value="确定" /><input type="button" id="cancelScale" value="取消" /></div></div>');
+                        var scaleSvgTime = 0;
+                        $("#confirmScale").click(function () {
+                            var option = $("#selectScale option:selected").val(),
+                                data = areaData[option];
+                            if (scaleSvgTime == 0) {
+                                var svgScale = d3.select("#graph")
+                                    .append("svg")
+                                    .attr("height", (height + padding.top + padding.bottom))
+                                    .attr("width", width)
+                                    .attr("id", "scaleSvg");
+                                scaleSvgTime++;
+                            } else {
+                                var svgScale = $("#scaleSvg");
+                            }
+                            //绘制单通道指标数据
+                            var xScale = d3.scaleLinear()
+                                .domain([1, currentSampleEnd - currentSampleStart + 1])
+                                .range([0, width]);
+
+                            var yScale = d3.scaleLinear()
+                                .domain([d3.min(data, function (d) { return d; }), d3.max(data, function (d) { return d; })])
+                                .range([height, 0]);
+
+                            var lineScale = d3.line()
+                                .curve(d3.curveBasis)
+                                .x(function (d, i) { return xScale(i); })
+                                .y(function (d, i) { return yScale(d); });
+                            var gScale = svgScale.append("g").attr("transform", "translate(" + padding.left + "," + padding.top + ")");
+
+                            gScale.append("text")
+                                .attr("fill", "red")
+                                .attr("font-size", "14px")
+                                .attr("text-anchor", "middle")
+                                .attr("x", 20)
+                                .attr("y", 0)
+                                .text(option)
+
+                            gScale.append("defs").append("clipPath")
+                                .attr("id", "clip")
+                                .append("rect")
+                                .attr("width", width)
+                                .attr("height", height)
+
+                            gScale.append("g")
+                                .attr("class", "axis axis--x")
+                                .attr("transform", "translate(0," + y(0) + ")")
+                                .call(d3.axisBottom(x));
+
+                            gScale.append("g")
+                                .attr("class", "axis axis--y")
+                                .call(d3.axisLeft(y));
+                            gScale.append("g")
+                                // .attr("transform", "translate(0," + y(0) + ")")
+                                .attr("clip-path", "url(#clip)")
+                                .append("path")
+                                .attr("d", lineScale(data))
+                                .attr("class", "line");
+                            $('#dialogScale').hide();
+                            //缩放
+                        });
+                        $('#cancelScale').click(function () {
+                            $('#dialogScale').hide();
+                        });
+                    })
+
+                    //数据标注
+                    var mark = document.getElementById("mark");
+                    mark.addEventListener("click", function () {
+                        var body = $("body");
+                        body.append('<div class="dialog" id="dialog"><p>请选择要分析的通道:</p><select id="select" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><p>分析后的特征值:</p><input type="text" style="width: 100%;" id="addText" /><div class="btn"><input type="button" id="confirm" value="确定" /><input type="button" id="cancel" value="取消" /></div></div>');
+                        $('#confirm').click(function () {
+                            var option = $("#select option:selected").val(),
+                                text = $("#addText").val();
+                            $.ajax({
+                                type: 'post',
+                                url: 'http://127.0.0.1:8800/save',
+                                contentType: 'application/json',
+                                dataType: 'json',
+                                data: JSON.stringify({
+                                    dataSource: text + ',' + areaData[option]
+                                }),
+                                success: function (res) {
+                                    console.log(res)
+                                }
+                            });
+                            $('#dialog').hide();
+                        });
+                        $('#cancel').click(function () {
+                            $('#dialog').hide();
+                        });
+                    })
+                } else {
+                    console.log("retry")
                 }
+                clickTime++;
             }
+            area.addEventListener("click", function () {
+                if (area.innerHTML == "选择区域") {
+                    area.innerHTML = "重新/继续选择区域";
+                    var optional = $("#optional");
+                    optional.append('<button id="scale">缩放</button><button id="mark">标注</button>')
+                }
+                else {
+                    clickTime = 0;
+                    d3.selectAll(".mark").remove();
+                }
+                var focusLine = svg.append("g").style("display", "none")
+                var vLine = focusLine.append("line");
+                rectHover.on("mouseover", function () {
+                    var mouseX = d3.mouse(this)[0];
+                    focusLine.style("display", null)
+                    vLine.attr("x1", mouseX)
+                        .attr("y1", 0)
+                        .attr("x2", mouseX)
+                        .attr("y2", svg.attr("height"))
+                        .attr("stroke", "black")
+                        .attr("stroke-width", "1px")
+                        .attr("fill", "none");
+                })
+                    .on("mousedown", mousedown)
+                    .on("mousemove", function () {
+                        var mouseX = d3.mouse(this)[0];
+                        vLine.attr("x1", mouseX).attr("x2", mouseX);
+                    })
+                    .on("mouseout", function () {
+                        focusLine.style("display", "none")
+                    })
+            })
         }
     })
 })()
