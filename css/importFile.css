@@ -47,3 +47,23 @@
     overflow: hidden;
     z-index: 0;
 }
+
+.file-dialog {
+    width: 200px;
+    height: 110px;
+    border-radius: 10px;
+    background: #fff;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.file-dialog .type-btn {
+    text-align: right;
+    margin: 5px 5px;
+}
