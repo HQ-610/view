@@ -36,6 +36,7 @@
     height: 100%;
     float: left;
     border: 1px solid #D35400;
+    border-right: none;
 }
 #left button{
     display: block;
@@ -45,8 +46,8 @@
 }
 #right{
     float: left;
-    width:78%;
-    margin-left:2%;
+    width: 80%;
+    padding-left:2%;
     height: 100%;
-    /* background:; */
+    border: 1px solid #D35400;
 }

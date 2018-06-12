@@ -10,14 +10,4 @@ router.post('/save', function(req, res) {
     });
 });
 
-router.post('/clear', function (req, res) {
-    fs.unlink('../data/data.csv', function (err) {
-        if (err) {
-            console.log(err);
-            return false;
-        }
-        res.send(true);
-    });
-});
-
 module.exports = router;

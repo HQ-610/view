@@ -51,7 +51,9 @@
         });
         var exit = document.getElementById('exit');
         exit.addEventListener('click', function() {
-            postData('/file/clear')
+            postData('/file/save', {
+                dataSource: ''
+            })
             .then(function(res) {
                 if(res) {
                     alert('您的数据已清空，请放心退出');
