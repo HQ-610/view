@@ -672,7 +672,7 @@
                     var mark = document.getElementById('mark');
                     mark.addEventListener('click', function () {
                         var body = $('body');
-                        body.append('<div class="signal" id="dialog"><p>请选择要分析的通道:</p><select id="tabSelect1"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><p>分析后的特征值:</p><select id="tabSelect2"><option value="0">开心</option><option value="1">不开心</option></select><div class="signal-btn"><input type="button" id="confirm" value="确定" /><input type="button" id="cancel" value="取消" /></div></div>');
+                        body.append('<div class="signal" id="dialog"><p>请选择要分析的通道:</p><select id="tabSelect1"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><p>分析后的特征值:</p><select id="tabSelect2"><option value="0">开心</option><option value="1">不开心</option></select><div class="signal-btn"><button id="confirm">确定</button><button id="cancel">取消</button></div></div>');
                         $('#confirm').click(function () {
                             var option1 = $("#tabSelect1 option:selected").val(),
                                 option2 = $("#tabSelect2 option:selected").val();
