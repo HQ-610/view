@@ -595,14 +595,14 @@
                         areaData.Ch_3.push(data[i].Ch_3);
                         areaData.Ch_4.push(data[i].Ch_4);
                     }
-
+                    console.log("areadate", areaData);
                     //缩放
                     var scale = document.getElementById("scale");
                     //根据index拿到数据，利用D3 API进行缩放
                     scale.addEventListener("click", function () {
                         //实现缩放
                         var body = $("body");
-                        body.append('<div class="dialog" id="dialogScale"><p>请选择要分析的通道:</p><select id="selectScale" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><div class="btn"><input type="button" id="confirmScale" value="确定" /><input type="button" id="cancelScale" value="取消" /></div></div>');
+                        body.append('<div class="signal" id="dialogScale"><p>请选择要分析的通道:</p><select id="selectScale" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><div class="btn"><input type="button" id="confirmScale" value="确定" /><input type="button" id="cancelScale" value="取消" /></div></div>');
                         var scaleSvgTime = 0;
                         $("#confirmScale").click(function () {
                             var option = $("#selectScale option:selected").val(),
@@ -661,7 +661,6 @@
                                 .attr("d", lineScale(data))
                                 .attr("class", "line");
                             $('#dialogScale').hide();
-                            //缩放
                         });
                         $('#cancelScale').click(function () {
                             $('#dialogScale').hide();
