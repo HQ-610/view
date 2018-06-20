@@ -48,7 +48,9 @@ button:hover {
 }
 
 .signal-btn {
-    margin-top: 10px;
+    position:absolute;
+    bottom:10px;
+    right:10px;
     width: 100%;
     text-align: right;
 }

@@ -602,7 +602,7 @@
                     scale.addEventListener("click", function () {
                         //实现缩放
                         var body = $("body");
-                        body.append('<div class="signal" id="dialogScale"><p>请选择要分析的通道:</p><select id="selectScale" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><div class="btn"><input type="button" id="confirmScale" value="确定" /><input type="button" id="cancelScale" value="取消" /></div></div>');
+                        body.append('<div class="signal" id="dialogScale"><p>请选择要分析的通道:</p><select id="selectScale" class="select"><option value="Ch_1">Ch_1</option><option value="Ch_2">Ch_2</option><option value="Ch_3">Ch_3</option><option value="Ch_4">Ch_4</option></select><div class="signal-btn""><button id="confirmScale">确定</button><button id="cancelScale">取消</button></div></div>');
                         var scaleSvgTime = 0;
                         $("#confirmScale").click(function () {
                             var option = $("#selectScale option:selected").val(),
