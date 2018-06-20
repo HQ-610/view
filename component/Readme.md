@@ -1,4 +1,4 @@
-1. git clone https://github.com/monkeyMall/view/tree/version_1.0
+1. git clone https://github.com/monkeyMall/view/tree/version_1.0 && gco subbranch
 2. npm install
 3. 本机安装mongodb数据库
 4. 启动mongodb数据库
